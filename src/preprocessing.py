@@ -23,7 +23,7 @@ def fetch_profile_photo(user_id, bot):
 
 def parse_userdata(message, bot):
 
-  coordinates = parse_coordinates(message)
+  #coordinates = parse_coordinates(message)
   b64photo = fetch_profile_photo(message['from_user']['id'], bot)
 
   data = {
@@ -35,7 +35,7 @@ def parse_userdata(message, bot):
           },
           "photo": b64photo
         },
-      "route":[coordinates]
+      "route": []
       }
 
   return data

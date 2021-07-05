@@ -10,13 +10,15 @@ from preprocessing import parse_userdata
 
 TG_TOKEN = os.getenv('TG_TOKEN')
 DB_URL = os.getenv('DB_URL')
+LOGGER_URL = os.getenv('LOGGER_URL')
 
 
 def start(update, context):
     pass
 
 def help(update, context):
-    update.message.reply_text('apua!!')
+    help_str = 'jotain apua'
+    update.message.reply_text(help_str)
 
 def init(update, context):
     data = parse_userdata(update.message, context.bot)
@@ -25,6 +27,7 @@ def init(update, context):
         add_user(data, context.bot_data['db'])
     else:
         update.message.reply_text('User already in db')
+    update.message.reply_text(LOGGER_URL + str(update.message['from_user']['id']))
 
 def status(update, context):
     userName = update.message['from_user']['username']
