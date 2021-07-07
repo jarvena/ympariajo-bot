@@ -27,6 +27,7 @@ def parse_userdata(message, bot):
   b64photo = fetch_profile_photo(message['from_user']['id'], bot)
 
   data = {
+      "uid": message['from_user']['id'],
       "username": message['from_user']['username'],
       "details":{
         "name": {

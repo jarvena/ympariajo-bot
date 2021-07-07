@@ -21,7 +21,7 @@ def help(update, context):
 
 def init(update, context):
     data = parse_userdata(update.message, context.bot)
-    status_data = user_status(data['username'], context.bot_data['db'])
+    status_data = user_status(data['uid'], context.bot_data['db'])
     if not status_data['user_info']:
         add_user(data, context.bot_data['db'])
     else:
@@ -29,22 +29,22 @@ def init(update, context):
     update.message.reply_text(LOGGER_URL + str(update.message['from_user']['id']))
 
 def status(update, context):
-    userName = update.message['from_user']['username']
-    status_data = user_status(userName, context.bot_data['db'])
+    userId = update.message['from_user']['id']
+    status_data = user_status(userId, context.bot_data['db'])
     if status_data['user_info']:
         update.message.reply_text('User found with {} datapoints'.format(status_data['locations']))
     else:
         update.message.reply_text('No user information in db')
 
 def clear(update, context):
-    userName = update.message['from_user']['username']
-    clear_route(userName, context.bot_data['db'])
+    userId = update.message['from_user']['id']
+    clear_route(userId, context.bot_data['db'])
 
 def clearData(update, context):
-    userName = update.message['from_user']['username']
-    clear_data(userName, context.bot_data['db'])
+    userId = update.message['from_user']['id']
+    clear_data(userId, context.bot_data['db'])
 
-    status_data = user_status(userName, context.bot_data['db'])
+    status_data = user_status(userId, context.bot_data['db'])
     if not status_data['user_info']:
         update.message.reply_text('All user information deleted')
     else:
