@@ -1,4 +1,3 @@
-# just empty template
 import os
 import logging
 import pymongo
@@ -55,7 +54,7 @@ def main():
     updater = Updater(TG_TOKEN, use_context=True)
     dp = updater.dispatcher
 
-    client = pymongo.MongoClient(os.getenv(DB_URL))
+    client = pymongo.MongoClient(DB_URL)
     db = client.routedata
     dp.bot_data['db'] = db
 
